@@ -98,6 +98,10 @@ export const updateProduct = async (id: string, data: Partial<NewProduct>) => {
 
 //delete products
 export const deleteProduct = async (id: string) => {
+  const existingProduct = await getProductById(id);
+  if (!existingProduct) {
+    throw new Error(`Product with id ${id} not found`);
+  }
   const [product] = await db
     .delete(products)
     .where(eq(products.id, id))
@@ -114,9 +118,21 @@ export const createComment = async (data: NewComments) => {
 
 //delete comment
 export const deleteComment = async (id: string) => {
+  const existingComment = await getCommentById(id);
+  if (!existingComment) {
+    throw new Error(`Comment with id ${id} not found`);
+  }
   const [comment] = await db
     .delete(comments)
     .where(eq(comments.id, id))
     .returning();
   return comment;
+};
+
+//getCommetById
+export const getCommentById = async (id: string) => {
+  return await db.query.comments.findFirst({
+    where: eq(comments.id, id),
+    with: { user: true },
+  });
 };
