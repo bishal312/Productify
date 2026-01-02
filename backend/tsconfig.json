@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./", // Where your source files are
+    "rootDir": "./src", // Where your source files are
     "outDir": "./dist", // Where compiled JS goes
     "module": "commonjs", // Output format (require/module.exports)
     "target": "es2022", // JS version to compile to (modern)
