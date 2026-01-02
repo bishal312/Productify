@@ -18,7 +18,7 @@ export const products = pgTable("products", {
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  createdAT: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
+  createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
   updatedAt: timestamp("update_at", { mode: "date" }).notNull().defaultNow(),
 });
 
