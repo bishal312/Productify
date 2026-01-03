@@ -28,7 +28,7 @@ export const comments = pgTable("comments", {
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  productid: uuid("product_id")
+  productId: uuid("product_id")
     .notNull()
     .references(() => products.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
@@ -61,7 +61,7 @@ export const commentsRelations = relations(comments, ({ one }) => ({
   // "fields" = the foreign key column in this table (products.userId)
   // "references" = the primary key column in the related table (users.id)
   products: one(products, {
-    fields: [comments.productid],
+    fields: [comments.productId],
     references: [products.id],
   }),
 }));
