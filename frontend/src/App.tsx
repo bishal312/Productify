@@ -5,9 +5,14 @@ import ProductPage from "./Pages/ProductPage"
 import ProfilePage from "./Pages/ProfilePage"
 import CreatePage from "./Pages/CreatePage"
 import EditProductPage from "./Pages/EditProductPage"
+import useAuthReq from "./hooks/useAuthReq"
+import { useUserSync } from "./hooks/useUserSync"
 
 function App() {
+  const { isLoaded } = useAuthReq();
 
+  useUserSync();
+  if (!isLoaded) return null;
   return (
     <>
       <div className="min-h-screen bg-base-100">
