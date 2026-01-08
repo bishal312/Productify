@@ -12,7 +12,19 @@ import {
 //user queries//
 //create user
 export const createUser = async (data: NewUser) => {
-  const [user] = await db.insert(users).values(data).returning();
+  const [user] = await db
+    .insert(users)
+    .values(data)
+    .onConflictDoUpdate({
+      target: users.id,
+      set: {
+        email: data.email,
+        name: data.name,
+        imageUrl: data.imageUrl,
+        updatedAt: new Date(),
+      },
+    })
+    .returning();
   return user;
 };
 

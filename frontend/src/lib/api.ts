@@ -20,7 +20,7 @@ export const syncUser = async (userData: userType) => {
 // products api
 export const getAllProducts = async () => {
   const { data } = await api.get("/products");
-  return data;
+  return data.products;
 };
 
 export const getProductById = async (id: string) => {
