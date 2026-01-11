@@ -28,8 +28,18 @@ export const getProductById = async (id: string) => {
   return data;
 };
 
+export const getMyProducts = async () => {
+  const { data } = await api.get("/products/my");
+  return data;
+};
+
 export const createProduct = async (productData: productType) => {
   const { data } = await api.post("/products", productData);
+  return data;
+};
+
+export const updateProduct = async ({ id, ...productData }: { id: string }) => {
+  const { data } = await api.put(`/products/${id}`, productData);
   return data;
 };
 
